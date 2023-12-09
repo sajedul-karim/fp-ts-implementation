@@ -44,9 +44,6 @@ package-lock.json
 ./private/
 private
 .editorconfig
-server/config/config/development.js
-server/config/config/local.js
-server/feature-flags/development.js
 *.iml
 .nvmrc
 .vim/
