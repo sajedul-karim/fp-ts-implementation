@@ -1,4 +1,8 @@
-import { findUserById, processUserResponse } from "./option-feature";
+import {
+  findUserById,
+  getInterestRate,
+  processUserResponse,
+} from "./option-feature";
 import * as E from "fp-ts/Either";
 import * as O from "fp-ts/Option";
 
@@ -43,6 +47,25 @@ describe("Option and either test", () => {
       expect(result).toEqual(
         E.left(new Error(`User details not found using id: ${userId}`))
       );
+    });
+  });
+  describe("getInterestRate", () => {
+    it("should return the provided value", () => {
+      const value = 10;
+      const result = getInterestRate(value);
+      expect(result).toBe(value);
+    });
+
+    it("should return 0 for null value", () => {
+      const value = null;
+      const result = getInterestRate(value);
+      expect(result).toBe(0);
+    });
+
+    it("should return 0 for undefined value", () => {
+      const value = undefined;
+      const result = getInterestRate(value);
+      expect(result).toBe(0);
     });
   });
 });

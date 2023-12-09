@@ -79,3 +79,12 @@ export function getUser(id: number) {
     )
   );
 }
+
+export function getInterestRate(value: number | null | undefined): number {
+  return pipe(
+    value,
+    O.fromNullable,
+    O.map((v) => v),
+    O.getOrElse(() => 0)
+  );
+}
