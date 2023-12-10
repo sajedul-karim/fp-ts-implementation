@@ -1,4 +1,5 @@
 import * as TE from "fp-ts/TaskEither";
+import * as E from "fp-ts/Either";
 import { pipe } from "fp-ts/lib/function";
 import { sequenceT } from "fp-ts/Apply";
 
@@ -18,4 +19,13 @@ export function getPlayerInfo(age: number): TE.TaskEither<Error, string> {
     }),
     TE.mapLeft((e) => e)
   );
+}
+
+export async function showPlayerInfo(age: number) {
+  const player = await getPlayerInfo(age)();
+  if (E.isLeft(player)) {
+    console.log(player.left.message);
+  } else {
+    console.log(player.right);
+  }
 }
