@@ -6,6 +6,9 @@
 ## Install:
 `yarn install`
 
+## Run mail file
+`yarn dev`
+
 ## Run test cases:
 `yarn test`
 
