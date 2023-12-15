@@ -30,7 +30,8 @@ const getWordLength = (word: string): E.Either<Error, number> =>
     : E.right(word.length);
 
 const divide =
-  (divisor: number) => (dividend: number): E.Either<Error, number> =>
+  (divisor: number) =>
+  (dividend: number): E.Either<Error, number> =>
     divisor === 0
       ? E.left(new Error("Division by zero is not allowed"))
       : E.right(dividend / divisor);
@@ -45,12 +46,12 @@ function pipeErrorHandlingTest(word: string, divisor: number) {
       return pipe(
         wl,
         divide(divisor),
-        E.map((n) => addTwo(n)),
+        E.map((n) => addTwo(n))
       );
     }),
     E.fold(
       (error: Error) => console.error("Error:", error.message),
-      (result: number) => console.log("Result:", result),
+      (result: number) => console.log("Result:", result)
     )
   );
 }
@@ -59,12 +60,14 @@ pipeErrorHandlingTest("ABCD", 2); //(4/2) * 2 = 4
 pipeErrorHandlingTest("ABCD", 0); //Error: Division by zero is not allowed
 pipeErrorHandlingTest("", 2); //Error: Word length can not be 0
 
-
 // Function accepting two arguments (Binary function)
 const add = (a: number, b: number): number => a + b;
 
 // Curried version of the function
-const curriedAdd = (a: number) => (b: number): number => a + b;
+const curriedAdd =
+  (a: number) =>
+  (b: number): number =>
+    a + b;
 
 // Usage of curried function
 const addTwo1 = curriedAdd(2); // Partial application, returns a new function waiting for the second argument

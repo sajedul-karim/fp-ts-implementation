@@ -20,7 +20,10 @@ export function filterCountries(
 }
 
 function sumNumbers(allNumbers: number[]) {
-  const sumValue = allNumbers.reduce((acc, item) => (acc += item), 0);
+  const sumValue = allNumbers.reduce(
+    (acc, numberItem) => (acc += numberItem),
+    0
+  );
   return sumValue;
 }
 
