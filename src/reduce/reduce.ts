@@ -19,19 +19,11 @@ export function filterCountries(
   return [supported, unsupported];
 }
 
-function sumNumbers(allNumbers: number[]) {
-  const sumValue = allNumbers.reduce(
-    (acc, numberItem) => (acc += numberItem),
-    0
-  );
-  return sumValue;
+function sumNumbers(allNumbers: number[]): number {
+  return allNumbers.reduce((acc, numberItem) => (acc += numberItem), 0);
 }
+const getlength = (str: string[]) => str.map((c) => c.length);
 
-function getlength(str: string[]) {
-  return str.map((c) => c.length);
-}
-
-export function getStringArrayCharCount(countries: string[]) {
-  const sumValue = pipe(countries, getlength, sumNumbers);
-  return sumValue;
+export function getStringArrayCharCount(countries: string[]): number {
+  return pipe(countries, getlength, sumNumbers);
 }
