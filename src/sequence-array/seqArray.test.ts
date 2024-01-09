@@ -12,4 +12,9 @@ describe("getPlayerInfo", () => {
     const result = await getPlayerInfo(15)();
     expect(result).toEqual(E.left(new Error("Player is under aged. Age: 15")));
   });
+
+  it("should return an error if age is under 15", async () => {
+    const result = await getPlayerInfo(10)();
+    expect(result).toEqual(E.left(new Error("Player is under aged. Age: 10")));
+  });
 });
