@@ -8,7 +8,9 @@ function getName(): TE.TaskEither<Error, String> {
 }
 
 function getAge(age: number): TE.TaskEither<Error, number> {
-  return age > 18 ? TE.right(age) : TE.left(new Error("Player is under aged"));
+  return age > 18
+    ? TE.right(age)
+    : TE.left(new Error(`Player is under aged. Age: ${age}`));
 }
 
 export function getPlayerInfo(age: number): TE.TaskEither<Error, string> {
