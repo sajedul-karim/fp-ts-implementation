@@ -4,6 +4,7 @@ import {
   UserSchemaType,
   parseUserJson,
   UserSchema,
+  parseUserDataTest,
 } from "./zod-implementation";
 import * as E from "fp-ts/Either";
 import { Fixture, Generator } from "zod-fixture";
@@ -138,6 +139,45 @@ describe("Zod feature Test", () => {
 
       expect(E.isRight(result)).toBe(true);
       expect(result).toEqual(E.right(validUserData));
+    });
+  });
+
+  describe("parseUserDataTest", () => {
+    it("should parse and extract name and presentAddress from valid user data", () => {
+      const validUserData = {
+        name: "John Doe",
+        age: 30,
+        personalInfo: {
+          presentAddress: "123 Main St",
+          permanentAddress: "456 Oak Ave",
+        },
+      };
+
+      const result = parseUserDataTest(validUserData);
+
+      expect(E.isRight(result)).toBe(true);
+      if (E.isRight(result)) {
+        expect(result.right).toEqual({
+          name: "John Doe",
+          presentAddress: "123 Main St",
+        });
+      }
+    });
+
+    it("should handle invalid user data", () => {
+      const invalidUserData = {
+        age: 30,
+        personalInfo: {
+          permanentAddress: "456 Oak Ave",
+        },
+      };
+
+      const result = parseUserDataTest(invalidUserData);
+
+      expect(E.isLeft(result)).toBe(true);
+      if (E.isLeft(result)) {
+        expect(result.left).toBeInstanceOf(ZodError);
+      }
     });
   });
 });
