@@ -1,4 +1,3 @@
-```markdown
 # Functional Programming with fp-ts
 
 This project demonstrates the implementation of functional programming concepts using the [fp-ts](https://gcanti.github.io/fp-ts/) library in TypeScript.
