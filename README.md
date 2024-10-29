@@ -1,6 +1,7 @@
+```markdown
 # Functional Programming with fp-ts
 
-This project demonstrates the implementation of functional programming concepts using the fp-ts library in TypeScript.
+This project demonstrates the implementation of functional programming concepts using the [fp-ts](https://gcanti.github.io/fp-ts/) library in TypeScript.
 
 ## Resources
 
@@ -13,14 +14,64 @@ This project demonstrates the implementation of functional programming concepts 
 
 To install the project dependencies, run:
 
-```
+```bash
 yarn install
+```
 
-## Run main file
-`yarn dev`
+## Scripts
 
-## Run test cases:
-`yarn test`
+- **Run the main application:**
 
-## Run specific test:
-`yarn test -t getPlayerInfo`
+  ```bash
+  yarn dev
+  ```
+
+- **Build the project:**
+
+  ```bash
+  yarn build
+  ```
+
+- **Start the application:**
+
+  ```bash
+  yarn start
+  ```
+
+- **Run tests:**
+
+  ```bash
+  yarn test
+  ```
+
+- **Run a specific test:**
+
+  ```bash
+  yarn test -t <testName>
+  ```
+
+- **Lint the code:**
+
+  ```bash
+  yarn lint
+  ```
+
+- **Format the code:**
+
+  ```bash
+  yarn format
+  ```
+
+## Project Structure
+
+- `src/`: Contains the source TypeScript files implementing various functional programming concepts.
+  - `async-operation/`: Demonstrates usage of `TaskEither` for handling asynchronous operations.
+  - `options/`: Implements functions using `Option` and `Either` for error handling.
+  - `pipe/`: Examples of function composition using `pipe`.
+  - `reduce/`: Examples using array reduction.
+  - `non-empty-array/`: Working with non-empty arrays in fp-ts.
+  - `sequence-array/`: Demonstrates sequencing of `TaskEither`.
+  - `monad-example/`: Examples showcasing monadic operations.
+  - `currying/`: Implements curried functions and their tests.
+  - `zod/`: Schema validation using `zod` in combination with fp-ts.
+- `tests/`: Contains test files for the respective modules using Jest.
