@@ -75,3 +75,4 @@ yarn install
   - `currying/`: Implements curried functions and their tests.
   - `zod/`: Schema validation using `zod` in combination with fp-ts.
 - `tests/`: Contains test files for the respective modules using Jest.
+```
