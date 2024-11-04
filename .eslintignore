@@ -1,13 +1,20 @@
-# Ignore everything recursively
-.husky
-alembic
-charts
-coverage
-dist
-docker
-node_modules
+# Build outputs
+dist/
+coverage/
 
+# Dependencies
+node_modules/
 
-# not a .ts files
+# Configuration files
+.husky/
+charts/
+docker/
+
+# Include all TypeScript files
 !*.ts
+!*.tsx
+
+# Specific files to ignore
+jest.config.js
+.eslintrc.cjs
 

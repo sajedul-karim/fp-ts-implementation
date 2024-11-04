@@ -8,13 +8,15 @@ module.exports = {
     parserOptions: {
         project: [
             './tsconfig.json',
-            // './jest.config.ts',
-        ],  //required for "type-aware linting"
+        ],
+        tsconfigRootDir: __dirname,
+        sourceType: 'module',
     },
     extends: [
-        // 'eslint:recommended',
-        // 'plugin:@typescript-eslint/recommended',
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
         'plugin:import/recommended',
+        'plugin:import/typescript',
         'airbnb-typescript/base',
     ],
     rules: {
@@ -27,7 +29,10 @@ module.exports = {
         "no-console": ["error", { allow: ["warn", "error", "info"] }],
         "max-lines": [
             "error", {"max": 300, "skipBlankLines": true, "skipComments": true}
-        ]
+        ],
+        '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/no-explicit-any': 'error',
     },
     overrides: [
         {
@@ -37,5 +42,12 @@ module.exports = {
                 "max-lines": "off"
             }
         }
-    ]
+    ],
+    settings: {
+        'import/resolver': {
+            node: {
+                extensions: ['.js', '.jsx', '.ts', '.tsx']
+            }
+        }
+    }
 };
