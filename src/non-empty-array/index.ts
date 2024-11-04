@@ -1,8 +1,8 @@
-import * as E from "fp-ts/Either";
-import * as TE from "fp-ts/TaskEither";
-import * as NEA from "fp-ts/NonEmptyArray";
-import { pipe } from "fp-ts/lib/function";
-import * as O from "fp-ts/Option";
+import * as E from 'fp-ts/Either';
+import * as TE from 'fp-ts/TaskEither';
+import * as NEA from 'fp-ts/NonEmptyArray';
+import { pipe } from 'fp-ts/lib/function';
+import * as O from 'fp-ts/Option';
 
 type ProcessedNumbers = {
   evenNumber: number[];
@@ -10,7 +10,7 @@ type ProcessedNumbers = {
 };
 
 export function getNumbers(
-  allNumbers: number[]
+  allNumbers: number[],
 ): E.Either<Error, ProcessedNumbers> {
   const result = allNumbers.reduce(
     (acc, num) => {
@@ -21,20 +21,20 @@ export function getNumbers(
       }
       return acc;
     },
-    { evenNumber: [], oddNumber: [] } as ProcessedNumbers
+    { evenNumber: [], oddNumber: [] } as ProcessedNumbers,
   );
   return E.right(result);
 }
 
 export function processNumber(
-  numbers: number[]
+  numbers: number[],
 ): TE.TaskEither<Error, NEA.NonEmptyArray<number>> {
   return TE.fromEither(
     pipe(
       getNumbers(numbers),
       E.chain((processedNumber: ProcessedNumbers) => {
         if (processedNumber.oddNumber.length > 0)
-          console.log(`Odd Numbers: ${processedNumber.oddNumber}`);
+          console.info(`Odd Numbers: ${processedNumber.oddNumber}`);
 
         return pipe(
           NEA.fromArray(processedNumber.evenNumber),
@@ -42,13 +42,13 @@ export function processNumber(
             return NEA.sequence(E.Applicative)(
               pipe(
                 myNumbers,
-                NEA.map((mNumber) => E.right(mNumber * 2))
-              )
+                NEA.map((mNumber) => E.right(mNumber * 2)),
+              ),
             );
           }),
-          O.getOrElse(() => E.left(new Error("No Number found")))
+          O.getOrElse(() => E.left(new Error('No Number found'))),
         );
-      })
-    )
+      }),
+    ),
   );
 }

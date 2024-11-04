@@ -1,8 +1,8 @@
-import { pipe } from "fp-ts/lib/function";
+import { pipe } from 'fp-ts/lib/function';
 
 export function filterCountries(
   supportedCountry: string[],
-  allCountry: string[]
+  allCountry: string[],
 ) {
   const [supported, unsupported] = allCountry.reduce(
     (acc, country) => {
@@ -13,7 +13,7 @@ export function filterCountries(
       }
       return acc;
     },
-    [[], []] as [string[], string[]]
+    [[], []] as [string[], string[]],
   );
 
   return [supported, unsupported];

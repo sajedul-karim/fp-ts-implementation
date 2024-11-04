@@ -1,6 +1,6 @@
-import { pipe } from "fp-ts/lib/function";
-import * as O from "fp-ts/Option";
-import * as E from "fp-ts/Either";
+import { pipe } from 'fp-ts/lib/function';
+import * as O from 'fp-ts/Option';
+import * as E from 'fp-ts/Either';
 
 type UserInfo = {
   id: number;
@@ -8,9 +8,9 @@ type UserInfo = {
 };
 
 const userInfos: UserInfo[] = [
-  { id: 1, name: "Joe Baiden" },
-  { id: 2, name: "Seikh Hasina" },
-  { id: 3, name: "John Doe" },
+  { id: 1, name: 'Joe Baiden' },
+  { id: 2, name: 'Seikh Hasina' },
+  { id: 3, name: 'John Doe' },
 ];
 
 type UserDetails = {
@@ -20,21 +20,21 @@ type UserDetails = {
   address: string;
 };
 const userDetailsList: UserDetails[] = [
-  { id: 1, userId: 1, gender: "male", address: "USA" },
-  { id: 2, userId: 2, gender: "female", address: "Bangladesh" },
+  { id: 1, userId: 1, gender: 'male', address: 'USA' },
+  { id: 2, userId: 2, gender: 'female', address: 'Bangladesh' },
 ];
 
 export function findUserById(id: number): O.Option<UserInfo> {
   return pipe(
     userInfos.find((u) => u.id === id),
-    O.fromNullable
+    O.fromNullable,
   );
 }
 
 function findUserDetailsById(userId: number): O.Option<UserDetails> {
   return pipe(
     userDetailsList.find((ud) => ud.userId === userId),
-    O.fromNullable
+    O.fromNullable,
   );
 }
 
@@ -45,7 +45,7 @@ type UserResponse = {
 };
 
 export function processUserResponse(
-  userId: number
+  userId: number,
 ): E.Either<Error, UserResponse> {
   return pipe(
     findUserById(userId),
@@ -62,11 +62,11 @@ export function processUserResponse(
                 id: user.id,
                 name: user.name,
                 gender: ud.gender,
-              })
-          )
+              }),
+          ),
         );
-      }
-    )
+      },
+    ),
   );
 }
 
@@ -75,8 +75,8 @@ export function getUser(id: number) {
     processUserResponse(id),
     E.fold(
       (e) => `Error is: ${e.message}`,
-      (userResp) => `Response: ${JSON.stringify(userResp)}`
-    )
+      (userResp) => `Response: ${JSON.stringify(userResp)}`,
+    ),
   );
 }
 
@@ -85,6 +85,6 @@ export function getInterestRate(value: number | null | undefined): number {
     value,
     O.fromNullable,
     O.map((v) => v),
-    O.getOrElse(() => 0)
+    O.getOrElse(() => 0),
   );
 }

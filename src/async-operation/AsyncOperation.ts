@@ -1,5 +1,5 @@
-import * as TE from "fp-ts/TaskEither";
-import { pipe } from "fp-ts/lib/function";
+import * as TE from 'fp-ts/TaskEither';
+import { pipe } from 'fp-ts/lib/function';
 
 type UserInfo = {
   id: number;
@@ -7,9 +7,9 @@ type UserInfo = {
 };
 
 const userInfos: UserInfo[] = [
-  { id: 1, name: "Joe Baiden" },
-  { id: 2, name: "Seikh Hasina" },
-  { id: 3, name: "John Doe" },
+  { id: 1, name: 'Joe Baiden' },
+  { id: 2, name: 'Seikh Hasina' },
+  { id: 3, name: 'John Doe' },
 ];
 
 type UserDetails = {
@@ -19,8 +19,8 @@ type UserDetails = {
 };
 
 const userDetailsList: UserDetails[] = [
-  { id: 1, userId: 1, country: "USA" },
-  { id: 2, userId: 2, country: "BD" },
+  { id: 1, userId: 1, country: 'USA' },
+  { id: 2, userId: 2, country: 'BD' },
 ];
 
 export function fetchUserInfo(userId: number): TE.TaskEither<Error, UserInfo> {
@@ -31,7 +31,7 @@ export function fetchUserInfo(userId: number): TE.TaskEither<Error, UserInfo> {
 }
 
 export function fetchUserDetails(
-  userId: number
+  userId: number,
 ): TE.TaskEither<Error, UserDetails> {
   const userDetails = userDetailsList.find((ud) => ud.userId === userId);
   return userDetails
@@ -45,7 +45,7 @@ type UserResponse = {
 };
 
 export function processUser(
-  userId: number
+  userId: number,
 ): TE.TaskEither<Error, UserResponse> {
   return pipe(
     fetchUserInfo(userId),
@@ -57,8 +57,8 @@ export function processUser(
             userId: user.id,
             country: userDetails.country,
           };
-        })
+        }),
       );
-    })
+    }),
   );
 }

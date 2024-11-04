@@ -1,12 +1,12 @@
-import { z } from "zod";
-import { ZodError, ZodSchema } from "zod";
-import * as E from "fp-ts/Either";
-import * as J from "fp-ts/Json";
-import { pipe } from "fp-ts/lib/function";
+import { z, ZodError, ZodSchema } from 'zod';
+
+import * as E from 'fp-ts/Either';
+import * as J from 'fp-ts/Json';
+import { pipe } from 'fp-ts/lib/function';
 
 export function decodeWith<T>(
   schema: ZodSchema,
-  data: unknown
+  data: unknown,
 ): E.Either<ZodError, T> {
   const result = schema.safeParse(data);
   if (result.success) {
@@ -17,14 +17,14 @@ export function decodeWith<T>(
 
 export function decodeJsonWith<T>(
   schema: ZodSchema,
-  data: string
+  data: string,
 ): E.Either<ZodError | Error, T> {
   return pipe(
     J.parse(data),
     E.mapLeft((e: unknown) =>
-      e instanceof Error ? e : new Error(`Unknown error parsing: '${data}'`)
+      e instanceof Error ? e : new Error(`Unknown error parsing: '${data}'`),
     ),
-    E.chainW((jsonObj) => decodeWith(schema, jsonObj))
+    E.chainW((jsonObj) => decodeWith(schema, jsonObj)),
   );
 }
 
@@ -52,7 +52,7 @@ export function parseUserDataTest(userData: unknown) {
         name: user.name,
         presentAddress: user.personalInfo.presentAddress,
       };
-    })
+    }),
   );
 }
 

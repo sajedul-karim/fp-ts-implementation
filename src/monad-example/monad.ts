@@ -1,5 +1,5 @@
-import * as O from "fp-ts/Option";
-import { pipe } from "fp-ts/lib/function";
+import * as O from 'fp-ts/Option';
+import { pipe } from 'fp-ts/lib/function';
 
 type UserDatabase = {
   [key: number]: number | undefined;
@@ -13,15 +13,15 @@ const fetchUserAge = (userId: number): O.Option<number> => {
 
   const userAge = userDatabase[userId];
 
-  return typeof userAge !== "undefined" ? O.some(userAge) : O.none; // Return Some(age) or None
+  return typeof userAge !== 'undefined' ? O.some(userAge) : O.none; // Return Some(age) or None
 };
 
 export function handleAge(userId: number) {
   pipe(
     fetchUserAge(userId),
     O.fold(
-      () => console.log(`User ${userId} age not found`),
-      (age) => console.log(`User ${userId} age is ${age}`)
-    )
+      () => console.error(`User ${userId} age not found`),
+      (age) => console.info(`User ${userId} age is ${age}`),
+    ),
   );
 }
