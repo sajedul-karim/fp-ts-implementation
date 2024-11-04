@@ -30,6 +30,14 @@ yarn install
   ```bash
   yarn build
   ```
+  It will create a dist folder with the compiled code with javascript files.
+
+
+- **Run specific file:**
+
+  ```bash
+  node dist/closure/counterClosure.js
+  ```
 
 - **Start the application:**
 
