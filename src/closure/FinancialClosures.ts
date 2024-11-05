@@ -1,4 +1,9 @@
-export function createCounter(initialCount: number = 0) {
+type Counter = {
+  getCount: () => number;
+  increment: () => void;
+};
+
+export function createCounter(initialCount: number = 0): Counter {
   let count = initialCount;
   return {
     getCount: () => count,
@@ -6,7 +11,13 @@ export function createCounter(initialCount: number = 0) {
   };
 }
 
-export function createBankAccount(initialBalance: number = 0) {
+type BankAccount = {
+  deposit: (amount: number) => number;
+  withdraw: (amount: number) => number;
+  getBalance: () => number;
+};
+
+export function createBankAccount(initialBalance: number = 0): BankAccount {
   // Private variable that can't be accessed directly from outside
   let balance = initialBalance;
 
